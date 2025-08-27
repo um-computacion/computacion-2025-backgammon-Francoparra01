@@ -15,3 +15,9 @@ class Tablero:
         self.__agujas__[12] = ("negro", 5)
         self.__agujas__[7] = ("negro", 3)
         self.__agujas__[5] = ("negro", 5)
+
+    def estado_aguja(self, idx: int):
+        return self.__agujas__[idx]
+    
+    
+
