@@ -19,5 +19,21 @@ class Tablero:
     def estado_aguja(self, idx: int):
         return self.__agujas__[idx]
     
+    def fichas_retiradas(self, color: str) -> int:
+    return self.__retirada__[color]
+    
+    def fichas_en_barra(self, color: str) -> int:
+    return self.__barra__[color]
+
+    
+
+    
+
+    
+   
+
+    
+    
+    
     
 
