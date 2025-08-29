@@ -20,10 +20,29 @@ class Tablero:
         return self.__agujas__[idx]
     
     def fichas_retiradas(self, color: str) -> int:
-    return self.__retirada__[color]
+        return self.__retirada__[color]
     
     def fichas_en_barra(self, color: str) -> int:
-    return self.__barra__[color]
+        return self.__barra__[color]
+
+    # testear
+
+    def total_fichas(self, color: str) -> int:
+        """Cuenta todas las fichas de un color (tablero + barra + retiradas)."""
+        en_agujas = sum(n for c, n in self.__agujas__ if c == color)
+        return en_agujas + self.__barra__[color] + self.__retirada__[color]
+
+    def aguja_vacia(self, idx: int) -> bool:
+        """Devuelve True si la aguja no tiene fichas."""
+        c, n = self.__agujas__[idx]
+        return n == 0
+
+    def mostrar_tablero(self) -> None:
+        """Imprime las 24 agujas en consola (solo para debug)."""
+        for i, (c, n) in enumerate(self.__agujas__):
+            print(f"Aguja {i:2}: {c} x{n}")
+        print(f"Barra: {self.__barra__}")
+        print(f"Retiradas: {self.__retirada__}")
 
     
 
