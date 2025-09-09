@@ -17,3 +17,17 @@ class Jugador:
 
     def direccion(self) -> int:
         return self.__direccion__
+
+    def fichas_totales(self, tablero) -> int:
+        """
+        Devuelve el total de fichas del jugador en el tablero,
+        incluyendo en agujas, barra y retiradas.
+        """
+        return tablero.total_fichas(self.__color__)
+
+    def tiene_en_barra(self, tablero) -> bool:
+        """True si el jugador tiene fichas en la barra."""
+        return tablero.fichas_en_barra(self.__color__) > 0
+
+    def __str__(self) -> str:
+        return f"Jugador {self.__nombre__} ({self.__color__}, dir={self.__direccion__})"
