@@ -43,6 +43,16 @@ class Tablero:
             print(f"Aguja {i:2}: {c} x{n}")
         print(f"Barra: {self.__barra__}")
         print(f"Retiradas: {self.__retirada__}")
+    
+    def cantidad_en_aguja(self, idx: int) -> int:
+    """Devuelve cuántas fichas hay en la aguja idx."""
+    return self.__agujas__[idx][1]
+
+    def color_en_aguja(self, idx: int) -> str:
+    """Devuelve el color de las fichas en la aguja idx (o 'ninguno')."""
+    return self.__agujas__[idx][0]
+
+
 
     
 
