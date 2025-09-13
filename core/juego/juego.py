@@ -14,3 +14,8 @@ class Juego:
 
     def cambiar_turno(self):
         self.turno_idx = 1 - self.turno_idx
+
+    def tirar_dados(self) -> list[int]:
+        d1, d2 = self.dados.tirar()
+        return self.dados.expandir(d1, d2)
+
