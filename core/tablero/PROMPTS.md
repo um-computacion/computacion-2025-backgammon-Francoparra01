@@ -50,3 +50,18 @@ La IA explicó que conviene mantener la **lógica del juego en memoria** (clases
 - La UI o CLI solo muestra información y recibe comandos del usuario.  
 
 Esta separación permite testear la lógica del juego sin depender de la base de datos ni de la interfaz, y facilita cambios futuros (por ejemplo, reemplazar JSON por SQLite).  
+
+## Uso y utilidad de type hints en Python
+
+
+> "¿Cómo se usan los type hints en Python y para qué sirven?"
+
+**Respuesta de la IA (resumen):**  
+La IA explicó que los **type hints** son anotaciones opcionales que se colocan en parámetros y valores de retorno de funciones o métodos para indicar qué tipo de datos deberían usarse.  
+- Ejemplo: `def sumar(a: int, b: int) -> int:`  
+- No modifican la ejecución del programa (Python sigue siendo dinámico), pero sirven para:  
+  - Mejorar la legibilidad del código.  
+  - Obtener autocompletado más preciso en editores.  
+  - Detectar errores con linters y herramientas de análisis estático como `mypy`.  
+
+Se recomendó usarlos en proyectos medianos o grandes para hacer el código más claro y mantenible.
