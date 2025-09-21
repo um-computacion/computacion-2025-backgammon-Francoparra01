@@ -19,3 +19,16 @@ class Juego:
         d1, d2 = self.dados.tirar()
         return self.dados.expandir(d1, d2)
 
+    def mostrar_tablero(self) -> None:
+        """
+        Imprime un estado simplificado del tablero:
+        cada aguja muestra (color, cantidad).
+        """
+        for idx, (color, cantidad) in enumerate(self.tablero._Tablero__agujas__):
+            if cantidad > 0:
+                print(f"Aguja {idx}: {color} x{cantidad}")
+
+        print(f"Barra: {self.tablero._Tablero__barra__}")
+        print(f"Retiradas: {self.tablero._Tablero__retirada__}")
+
+
