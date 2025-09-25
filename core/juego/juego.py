@@ -31,4 +31,19 @@ class Juego:
         print(f"Barra: {self.tablero._Tablero__barra__}")
         print(f"Retiradas: {self.tablero._Tablero__retirada__}")
 
+        def mover_ficha(self, desde: int, hasta: int):
+        """
+        Movimiento de ficha básico (versión inicial).
+        """
+        aguja_desde = list(self.tablero._Tablero__agujas__[desde])
+        aguja_hasta = list(self.tablero._Tablero__agujas__[hasta])
 
+        aguja_desde[1] -= 1
+        aguja_hasta[0] = "blanco"   # fija color en blanco
+        aguja_hasta[1] += 1
+
+        self.tablero._Tablero__agujas__[desde] = tuple(aguja_desde)
+        self.tablero._Tablero__agujas__[hasta] = tuple(aguja_hasta)
+
+
+    
