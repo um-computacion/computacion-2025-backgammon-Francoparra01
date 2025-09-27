@@ -19,31 +19,33 @@ class Juego:
         d1, d2 = self.dados.tirar()
         return self.dados.expandir(d1, d2)
 
-    def mostrar_tablero(self) -> None:
+    def mover_ficha(self, desde: int, hasta: int, color: str):
         """
-        Imprime un estado simplificado del tablero:
-        cada aguja muestra (color, cantidad).
+        Mueve una ficha del jugador actual desde una aguja hacia otra.
+        Valida que haya fichas en 'desde' y respeta el color.
         """
-        for idx, (color, cantidad) in enumerate(self.tablero._Tablero__agujas__):
-            if cantidad > 0:
-                print(f"Aguja {idx}: {color} x{cantidad}")
+        c_desde, n_desde = self.tablero._Tablero__agujas__[desde]
+        assert c_desde == color and n_desde > 0, "No hay ficha del color en 'desde'"
 
-        print(f"Barra: {self.tablero._Tablero__barra__}")
-        print(f"Retiradas: {self.tablero._Tablero__retirada__}")
+        c_hasta, n_hasta = self.tablero._Tablero__agujas__[hasta]
 
-        def mover_ficha(self, desde: int, hasta: int):
-        """
-        Movimiento de ficha básico (versión inicial).
-        """
-        aguja_desde = list(self.tablero._Tablero__agujas__[desde])
-        aguja_hasta = list(self.tablero._Tablero__agujas__[hasta])
+        # Si destino está vacío o tiene fichas del mismo color → apilar
+        if c_hasta in ("ninguno", color):
+            self.tablero._Tablero__agujas__[hasta] = (color, n_hasta + 1)
+        else:
+            # Rival bloquea: solo se permite si hay 1 ficha (captura)
+            if n_hasta == 1:
+                self.tablero._Tablero__barra__[c_hasta] += 1
+                self.tablero._Tablero__agujas__[hasta] = (color, 1)
+            else:
+                raise ValueError("Movimiento inválido: aguja bloqueada por rival")
 
-        aguja_desde[1] -= 1
-        aguja_hasta[0] = "blanco"   # fija color en blanco
-        aguja_hasta[1] += 1
+        # Quitar de 'desde'
+        if n_desde == 1:
+            self.tablero._Tablero__agujas__[desde] = ("ninguno", 0)
+        else:
+            self.tablero._Tablero__agujas__[desde] = (color, n_desde - 1)
 
-        self.tablero._Tablero__agujas__[desde] = tuple(aguja_desde)
-        self.tablero._Tablero__agujas__[hasta] = tuple(aguja_hasta)
 
 
     
