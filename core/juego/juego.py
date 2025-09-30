@@ -20,32 +20,34 @@ class Juego:
         return self.dados.expandir(d1, d2)
 
     def mover_ficha(self, desde: int, hasta: int, color: str):
-        """
-        Mueve una ficha del jugador actual desde una aguja hacia otra.
-        Valida que haya fichas en 'desde' y respeta el color.
-        """
         c_desde, n_desde = self.tablero._Tablero__agujas__[desde]
         assert c_desde == color and n_desde > 0, "No hay ficha del color en 'desde'"
 
         c_hasta, n_hasta = self.tablero._Tablero__agujas__[hasta]
 
-        # Si destino está vacío o tiene fichas del mismo color → apilar
         if c_hasta in ("ninguno", color):
             self.tablero._Tablero__agujas__[hasta] = (color, n_hasta + 1)
         else:
-            # Rival bloquea: solo se permite si hay 1 ficha (captura)
             if n_hasta == 1:
                 self.tablero._Tablero__barra__[c_hasta] += 1
                 self.tablero._Tablero__agujas__[hasta] = (color, 1)
             else:
                 raise ValueError("Movimiento inválido: aguja bloqueada por rival")
 
-        # Quitar de 'desde'
         if n_desde == 1:
             self.tablero._Tablero__agujas__[desde] = ("ninguno", 0)
         else:
             self.tablero._Tablero__agujas__[desde] = (color, n_desde - 1)
 
+    def estado_juego(self) -> dict:
+        return {
+            "jugador_actual": self.jugador_actual().nombre(),
+            "barra": dict(self.tablero._Tablero__barra__),
+            "retirada": dict(self.tablero._Tablero__retirada__),
+        }
 
+
+
+    
 
     
