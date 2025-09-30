@@ -52,3 +52,13 @@ def test_mover_ficha_captura():
     # La ficha negra va a la barra
     assert juego.tablero._Tablero__barra__["negro"] == 1
 
+def test_mover_ficha_bloqueada():
+    j1 = Jugador("Agus", "blanco", 1)
+    j2 = Jugador("Fran", "negro", -1)
+    juego = Juego(j1, j2)
+
+    # Preparamos aguja 1 con 2 fichas negras → bloqueada
+    juego.tablero._Tablero__agujas__[1] = ("negro", 2)
+
+    with pytest.raises(ValueError):
+        juego.mover_ficha(0, 1, "blanco")
