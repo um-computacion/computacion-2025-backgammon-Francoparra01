@@ -65,3 +65,19 @@ La IA explicó que los **type hints** son anotaciones opcionales que se colocan 
   - Detectar errores con linters y herramientas de análisis estático como `mypy`.  
 
 Se recomendó usarlos en proyectos medianos o grandes para hacer el código más claro y mantenible.
+
+## Aplicar SRP en el método mover_ficha de Juego
+
+**Prompt:**  
+> "¿Cómo aplico una buena práctica o un principio SOLID en un método como mover_ficha del Juego?"
+
+**Respuesta (resumen):**  
+La IA explicó que el método `mover_ficha` en la clase `Juego` actualmente mezcla varias responsabilidades:  
+- Validar si la ficha puede moverse (regla del color, si la aguja está bloqueada, captura).  
+- Actualizar el estado del tablero (restar en 'desde', sumar en 'hasta', mandar ficha a la barra).  
+
+Según el principio de **Responsabilidad Única (SRP)** conviene separar estas tareas:  
+- `Tablero` debería proveer métodos como `puede_colocar(idx, color)` o `mover_simple(desde, hasta, color)` que encapsulen la lógica interna.  
+- `Juego` debería encargarse de coordinar la acción (saber qué jugador juega y qué movimiento intenta), pero no manipular directamente las estructuras privadas de `Tablero`.  
+
+Esto reduce acoplamiento, mejora la legibilidad y permite testear la lógica de movimiento en `Tablero` sin necesidad de pasar por toda la clase `Juego`.
