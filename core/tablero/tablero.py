@@ -62,6 +62,10 @@ class Tablero:
         filas.append(f"Retiradas: {self.__retirada__}")
         return "\n".join(filas)
 
+    
+    def __repr__(self) -> str:
+        """Representación de depuración del tablero."""
+        return f"<Tablero blanco={self.total_fichas('blanco')} negro={self.total_fichas('negro')}>"
 
 
 
