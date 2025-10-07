@@ -67,6 +67,12 @@ class Tablero:
         """Representación de depuración del tablero."""
         return f"<Tablero blanco={self.total_fichas('blanco')} negro={self.total_fichas('negro')}>"
 
+    def jugador_gano(self, color: str) -> bool:
+        """
+        Devuelve True si el jugador ya retiró todas sus fichas del tablero y barra.
+        """
+        total = self.total_fichas(color)
+        return total == 0
 
 
     
